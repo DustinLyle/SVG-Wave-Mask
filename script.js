@@ -42,3 +42,79 @@ function drawWave(t) {
 }
 
 $(window).on('resize', ()=>{ cw=window.innerWidth; ch=window.innerHeight; })
+
+// Menu and Social Icons Interaction
+var $menuIcon = $('.menu-icon');
+var $menuItems = $('.menu-items');
+var $contactSection = $('.contact-section');
+var isMenuOpen = false;
+
+$menuIcon.on('click', function() {
+  if (!isMenuOpen) {
+    // Open menu
+    $menuItems.css('display', 'block');
+    setTimeout(function() {
+      $menuItems.addClass('visible');
+    }, 10);
+    
+    // Animate menu icon
+    $('.menu-line').each(function(index) {
+      $(this).css('transform', index === 1 ? 'scaleX(0)' : 
+        `rotate(${index === 0 ? '45' : '-45'}deg) translate(${index === 0 ? '0, 15' : '0, -15'})`);
+    });
+  } else {
+    // Close menu
+    $menuItems.removeClass('visible');
+    setTimeout(function() {
+      $menuItems.css('display', 'none');
+    }, 300);
+    
+    // Reset menu icon
+    $('.menu-line').css('transform', 'none');
+  }
+  isMenuOpen = !isMenuOpen;
+});
+
+// Handle contact link click
+$('.contact-link').on('click', function(e) {
+  e.preventDefault();
+  $contactSection.css('display', 'block');
+  setTimeout(function() {
+    $contactSection.addClass('visible');
+  }, 10);
+  
+  // Close menu
+  $menuItems.removeClass('visible');
+  setTimeout(function() {
+    $menuItems.css('display', 'none');
+  }, 300);
+  $('.menu-line').css('transform', 'none');
+  isMenuOpen = false;
+});
+
+// Close contact section when clicking outside
+$(document).on('click', function(e) {
+  if ($contactSection.hasClass('visible') && 
+      !$(e.target).closest('.contact-section').length && 
+      !$(e.target).closest('.contact-link').length) {
+    $contactSection.removeClass('visible');
+    setTimeout(function() {
+      $contactSection.css('display', 'none');
+    }, 300);
+  }
+});
+
+// Scroll animation
+var $window = $(window);
+var $document = $(document);
+var scrollDistance = $document.height() - $window.height();
+var scrollPercent = 0;
+
+$window.on('scroll', function() {
+  scrollPercent = $window.scrollTop() / scrollDistance;
+  
+  // Update mask based on scroll
+  var maskHeight = 1000 - (scrollPercent * 1000);
+  var maskPath = `M0,0 L1000,0 L1000,${maskHeight} L0,${maskHeight} Z`;
+  $('#m rect').attr('height', maskHeight);
+});

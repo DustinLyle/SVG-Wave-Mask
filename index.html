@@ -4,37 +4,67 @@
   <meta charset="UTF-8">
   <title>SVG Wave Mask (scroll up/down)</title>
 <link rel="stylesheet" href="./style.css">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 <!-- partial:index.partial.html -->
 <div class="scrollDist"></div>
-<svg class="container" width="100%" height="100%">
+<svg class="container" width="100%" height="100%" viewBox="0 0 1000 1000">
   <defs>
-  <mask id="m"></mask>
-  <g id="txt2">
-    <rect width="750" height="120" fill="none" />
-    <text class="txt2" x="375" y="60" stroke="#fff">LYLE</text>
+    <mask id="m">
+      <rect width="100%" height="100%" fill="white"/>
+    </mask>
+  </defs>
+
+  <!-- Background Text (LYLE) -->
+  <g>
+    <text class="txt2" x="500" y="500" stroke="#fff">LYLE</text>
   </g>
 
-  <g id="txt1">    
-    <rect width="750" height="120" fill="none" />    
-    <text class="txt1" x="375" y="60" fill="#000" letter-spacing="0.15">DUSTIN</text>
-  </g>
-  </defs>
- 
-  <use xlink:href="#txt2" x="50%" y="50%" transform="translate(-375, -60)" />
-  
+  <!-- Foreground Text (DUSTIN) -->
   <g mask="url(#m)">
     <rect fill="#fff" width="100%" height="100%" />
-    <use xlink:href="#txt1" x="50%" y="50%" transform="translate(-375, -60)" />
+    <text class="txt1" x="500" y="500" fill="#000" letter-spacing="0.15">DUSTIN</text>
   </g>
-  
+
+  <!-- Menu Icon -->
+  <g class="menu-icon" transform="translate(500, 600)">
+    <rect x="-25" y="-2.5" width="50" height="5" fill="white" class="menu-line" />
+    <rect x="-25" y="12.5" width="50" height="5" fill="white" class="menu-line" />
+    <rect x="-25" y="27.5" width="50" height="5" fill="white" class="menu-line" />
+  </g>
+
+  <!-- Menu Items (initially hidden) -->
+  <g class="menu-items" style="display: none;" transform="translate(500, 700)">
+    <a href="https://www.tiktok.com/@yourusername" target="_blank" class="menu-item tiktok-item">
+      <text x="0" y="0" fill="white" class="menu-text">TikTok</text>
+    </a>
+    <a href="https://www.facebook.com/yourusername" target="_blank" class="menu-item facebook-item">
+      <text x="0" y="60" fill="white" class="menu-text">Facebook</text>
+    </a>
+    <a href="https://www.instagram.com/yourusername" target="_blank" class="menu-item instagram-item">
+      <text x="0" y="120" fill="white" class="menu-text">Instagram</text>
+    </a>
+    <a href="#contact" class="menu-item contact-item contact-link">
+      <text x="0" y="180" fill="white" class="menu-text">Contact</text>
+    </a>
+  </g>
 </svg>
+
+<!-- Contact Section -->
+<section id="contact" class="contact-section" style="display: none;">
+  <div class="contact-content">
+    <h2>Contact Me</h2>
+    <p>Email: your.email@example.com</p>
+    <p>Phone: (123) 456-7890</p>
+  </div>
+</section>
+
 <!-- partial -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.0/gsap.min.js'></script>
-<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/ScrollToPlugin3.min.js'></script><script  src="./script.js"></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/ScrollToPlugin3.min.js'></script>
+<script src="./script.js"></script>
 
 </body>
 </html>

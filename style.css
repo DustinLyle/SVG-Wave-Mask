@@ -1,29 +1,204 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 body, html {
-  background: black; 
-  overflow-x:hidden;
-  overflow-y:scroll;
+  background: black;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
   font-family: 'Montserrat', sans-serif;
-  font-size:90px;
-}
-
-.scrollDist{
-  width:100%;
-  height:200%;
-  position:absolute;
 }
 
 svg {
-  position:fixed;
+  position: fixed;
+  width: 100%;
+  height: 100%;
 }
 
-.txt1, .txt2 {
+text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
   text-anchor: middle;
   dominant-baseline: middle;
 }
 
-#txt1, #txt2 {
-  transform-box: fill-box;
+.txt1 {
+  font-size: 100px;
+}
+
+.txt2 {
+  font-size: 100px;
+}
+
+/* Menu Icon Styles */
+.menu-icon {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.menu-icon:hover {
+  transform: translate(500, 600) scale(1.1);
+}
+
+.menu-line {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Menu Items Styles */
+.menu-items {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.menu-items.visible {
+  opacity: 1;
+}
+
+.menu-item {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.menu-text {
+  font-size: 28px;
+  fill: white;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.menu-items.visible .menu-text {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Individual menu item colors and hover effects */
+.tiktok-item:hover .menu-text {
+  fill: #00f2ea;
+  transform: scale(1.1);
+}
+
+.facebook-item:hover .menu-text {
+  fill: #1877f2;
+  transform: scale(1.1);
+}
+
+.instagram-item:hover .menu-text {
+  fill: #e4405f;
+  transform: scale(1.1);
+}
+
+.contact-item:hover .menu-text {
+  fill: #00ff9d;
+  transform: scale(1.1);
+}
+
+/* Social Icons Styles */
+.social-icons {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.social-icons.visible {
+  opacity: 1;
+}
+
+.social-icon {
+  cursor: pointer;
+  transition: all 0.3s ease;
   transform-origin: center;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+}
+
+.social-icon:hover .icon-circle {
+  fill: #ff6b6b;
+  transition: fill 0.3s ease;
+}
+
+.social-icon:hover .icon-path {
+  fill: white;
+  stroke: white;
+  transition: all 0.3s ease;
+}
+
+/* TikTok specific hover */
+.tiktok-icon:hover {
+  animation: tiktok-bounce 0.5s ease infinite alternate;
+}
+
+@keyframes tiktok-bounce {
+  0% { transform: translateY(0) scale(1.2); }
+  100% { transform: translateY(-10px) scale(1.2); }
+}
+
+/* Facebook specific hover */
+.facebook-icon:hover {
+  animation: facebook-spin 0.5s ease infinite;
+}
+
+@keyframes facebook-spin {
+  0% { transform: rotate(0deg) scale(1.2); }
+  100% { transform: rotate(360deg) scale(1.2); }
+}
+
+/* Instagram specific hover */
+.instagram-icon:hover {
+  animation: instagram-pulse 0.5s ease infinite alternate;
+}
+
+@keyframes instagram-pulse {
+  0% { transform: scale(1.2); }
+  100% { transform: scale(1.3); }
+}
+
+/* Phone specific hover */
+.phone-icon:hover {
+  animation: phone-ring 0.5s ease infinite alternate;
+}
+
+@keyframes phone-ring {
+  0% { transform: rotate(-10deg) scale(1.2); }
+  100% { transform: rotate(10deg) scale(1.2); }
+}
+
+/* Contact Section Styles */
+.contact-section {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.9);
+  padding: 2rem;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.contact-section.visible {
+  opacity: 1;
+}
+
+.contact-content h2 {
+  margin-top: 0;
+  color: #00f2ea;
+}
+
+.contact-content p {
+  margin: 0.5rem 0;
+}
+
+/* Scroll Distance */
+.scrollDist {
+  position: absolute;
+  height: 200%;
+  width: 100%;
+  top: 0;
+  left: 0;
 }
